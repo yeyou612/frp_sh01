@@ -99,52 +99,6 @@ generate_random_name() {
     echo "${prefix}_${random_str}"
 }
 
-# 向服务端注册隧道
-register_tunnel_to_server() {
-    # 获取参数
-    tunnel_name=$1
-    tunnel_type=$2
-    local_port=$3
-    remote_port=$4
-    
-    # 获取服务器地址和认证信息
-    server_addr=$(grep "server_addr" "$CONFIG_FILE" | cut -d'=' -f2 | tr -d ' ')
-    token=$(grep "token" "$CONFIG_FILE" | head -1 | cut -d'=' -f2 | tr -d ' ')
-    
-    # 服务端API地址
-    api_url="http://${server_addr}:7501/api/register"
-    
-    # 获取主机名和本地IP
-    hostname=$(hostname)
-    local_ip=$(get_local_ip)
-    
-    echo -e "${BLUE}正在向服务端注册通道...${NC}"
-    
-    # 使用curl发送注册请求
-    response=$(curl -s -X POST \
-        -H "Content-Type: application/json" \
-        -H "Authorization: Bearer ${token}" \
-        -d "{
-            \"hostname\": \"${hostname}\",
-            \"local_ip\": \"${local_ip}\",
-            \"tunnel_name\": \"${tunnel_name}\",
-            \"tunnel_type\": \"${tunnel_type}\",
-            \"local_port\": ${local_port},
-            \"remote_port\": ${remote_port}
-        }" \
-        "${api_url}" || echo '{"success":false,"error":"连接服务端失败"}')
-    
-    # 解析响应
-    if echo "$response" | grep -q "\"success\":true"; then
-        echo -e "${GREEN}✅ 已成功向服务端注册通道${NC}"
-        return 0
-    else
-        error=$(echo "$response" | grep -o '"error":"[^"]*"' | cut -d':' -f2- | tr -d '"')
-        echo -e "${RED}❌ 向服务端注册通道失败: ${error:-未知错误}${NC}"
-        return 1
-    fi
-}
-
 # 检查配置文件中的端口通道
 list_tunnels() {
     if [ ! -f "$CONFIG_FILE" ]; then
@@ -302,9 +256,6 @@ local_ip = 127.0.0.1
 local_port = ${SOCKS_LOCAL_PORT}
 remote_port = ${SOCKS_REMOTE_PORT}
 EOF
-
-        # 向服务端注册
-        register_tunnel_to_server "$SOCKS_TUNNEL_NAME" "socks5" "$SOCKS_LOCAL_PORT" "$SOCKS_REMOTE_PORT"
     fi
     
     # 配置 SSH 穿透
@@ -325,9 +276,6 @@ local_ip = 127.0.0.1
 local_port = ${SSH_LOCAL_PORT}
 remote_port = ${SSH_REMOTE_PORT}
 EOF
-
-        # 向服务端注册
-        register_tunnel_to_server "$SSH_TUNNEL_NAME" "ssh" "$SSH_LOCAL_PORT" "$SSH_REMOTE_PORT"
     fi
     
     # 配置 Web 穿透
@@ -348,9 +296,6 @@ local_ip = 127.0.0.1
 local_port = ${WEB_LOCAL_PORT}
 remote_port = ${WEB_REMOTE_PORT}
 EOF
-
-        # 向服务端注册
-        register_tunnel_to_server "$WEB_TUNNEL_NAME" "web" "$WEB_LOCAL_PORT" "$WEB_REMOTE_PORT"
     fi
     
     # 询问是否添加自定义端口穿透
@@ -415,9 +360,6 @@ remote_port = ${REMOTE_PORT}
 EOF
 
     echo -e "${GREEN}✅ 已添加新的网络通道: ${TUNNEL_NAME}${NC}"
-    
-    # 向服务端注册隧道
-    register_tunnel_to_server "$TUNNEL_NAME" "$TUNNEL_TYPE" "$LOCAL_PORT" "$REMOTE_PORT"
     
     # 如果网络工具已安装并运行，则重启服务
     if systemctl is-active --quiet $SERVICE_NAME; then
