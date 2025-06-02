@@ -37,7 +37,7 @@
 
 1. 下载脚本：
 ```bash
-wget https://raw.githubusercontent.com/your-repo/frp_sh01/main/install_frps.sh
+wget https://raw.githubusercontent.com/yeyou612/frp_sh01/main/install_frps.sh
 chmod +x install_frps.sh
 ```
 
@@ -55,7 +55,7 @@ sudo ./install_frps.sh
 
 1. 下载脚本：
 ```bash
-wget https://raw.githubusercontent.com/your-repo/frp_sh01/main/network-tool.sh
+wget https://raw.githubusercontent.com/yeyou612/frp_sh01/main/network-tool.sh
 chmod +x network-tool.sh
 ```
 
