@@ -35,39 +35,29 @@
 
 ### 服务端安装
 
-1. 下载脚本：
+直接执行以下命令：
+
 ```bash
-wget https://raw.githubusercontent.com/yeyou612/frp_sh01/main/install_frps.sh
-chmod +x install_frps.sh
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/yeyou612/frp_sh01/main/install_frps.sh)"
 ```
 
-2. 运行安装脚本：
-```bash
-sudo ./install_frps.sh
-```
-
-3. 按照提示进行配置：
-   - 设置 Dashboard 用户名（默认：admin）
-   - 设置 Dashboard 密码（默认：admin123）
-   - 设置 Dashboard Token（默认：mysecret123）
+按照提示进行配置：
+- 设置 Dashboard 用户名（默认：admin）
+- 设置 Dashboard 密码（默认：admin123）
+- 设置 Dashboard Token（默认：mysecret123）
 
 ### 客户端安装
 
-1. 下载脚本：
+直接执行以下命令：
+
 ```bash
-wget https://raw.githubusercontent.com/yeyou612/frp_sh01/main/network-tool.sh
-chmod +x network-tool.sh
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/yeyou612/frp_sh01/main/network-tool.sh)"
 ```
 
-2. 运行安装脚本：
-```bash
-sudo ./network-tool.sh
-```
-
-3. 按照提示进行配置：
-   - 输入服务端地址
-   - 输入认证 Token
-   - 配置需要的隧道
+按照提示进行配置：
+- 输入服务端地址
+- 输入认证 Token
+- 配置需要的隧道
 
 ## 使用说明
 
