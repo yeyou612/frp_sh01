@@ -72,7 +72,7 @@ sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/yeyou612/frp_sh01/m
 
 ### 客户端管理
 
-运行 `./network-tool.sh` 后，可以通过菜单进行以下操作：
+运行 `./install-frpc_wz.sh` 后，可以通过菜单进行以下操作：
 1. 安装/重新配置网络监控工具
 2. 卸载网络监控工具
 3. 管理网络通道
