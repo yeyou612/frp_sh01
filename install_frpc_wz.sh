@@ -290,6 +290,13 @@ install_client() {
 server_addr = ${VPS_IP}
 server_port = ${SERVER_PORT}
 token = ${TOKEN}
+# 稳定性：
+tcp_mux = true
+login_fail_exit = false
+protocol = tcp
+heartbeat_interval = 20
+heartbeat_timeout = 90
+
 EOF
 
     # 配置 SOCKS5 代理通道，默认选择Y
