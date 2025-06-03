@@ -195,6 +195,10 @@ authentication_method = token
 token = ${DASH_TOKEN}
 allow_ports = 10000-40000
 max_pool_count = 100
+# 稳定性：
+heartbeat_timeout = 90
+tcp_mux = true
+
 EOF
 
   # 配置日志轮转
