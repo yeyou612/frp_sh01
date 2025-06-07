@@ -3,7 +3,7 @@
 这是一个用于快速部署和管理 FRP（Fast Reverse Proxy）服务端和客户端的工具套件。该套件包含两个主要脚本：
 
 1. `install_frps.sh` - FRP 服务端安装和管理脚本
-2. `install-frpc_wz.sh` - FRP 客户端安装和管理脚本
+2. `install_frpc_wz.sh` - FRP 客户端安装和管理脚本
 
 ## 功能特点
 
@@ -15,7 +15,7 @@
 - 支持服务端更新检查
 - 支持配置备份和恢复
 
-### 客户端 (network-tool.sh)
+### 客户端 (install_frpc_wz.sh)
 - 一键安装 FRP 客户端
 - 支持自动向服务端注册隧道
 - 支持多种隧道类型（TCP/UDP/HTTP/HTTPS）
@@ -38,7 +38,7 @@
 直接执行以下命令：
 
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/yeyou612/frp_sh01/main/install_frps.sh)"
+sudo bash -c "$(curl -fsSL http://raw.githubusercontent.com/yeyou612/frp_sh01/main/install_frps.sh)"
 ```
 
 按照提示进行配置：
@@ -51,7 +51,7 @@ sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/yeyou612/frp_sh01/m
 直接执行以下命令：
 
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/yeyou612/frp_sh01/main/install_frpc_wz.sh)"
+sudo bash -c "$(curl -fsSL http://raw.githubusercontent.com/yeyou612/frp_sh01/main/install_frpc_wz.sh)"
 ```
 
 按照提示进行配置：
